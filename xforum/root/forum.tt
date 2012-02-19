@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" 
+"http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+
+<html>
+
+<head>
+
+<style type='text/css'>
+ body{margin:0;}
+ font.top{font-size:34pt;
+          color:#ffffff; 
+          font-family:Verdana;
+         }
+ td.left{background-color:#2c5aa0;text-align:left;}
+ td.right{background-color:#2c5aa0;text-align:right;}
+ font.log_in{font-size:10pt;
+          color:#ffffff; 
+          font-family:Verdana;
+         }
+ input.auth{background-color:#80b3ff; border: solid #000000 1px;width:100px;}
+ input.exit{background-color: #2c5aa0;
+          color:#ffffff; 
+          font-family:Verdana;
+          border:0;
+           }
+ input.exit:hover{color:#80b3ff;
+                   cursor:pointer;
+           }
+ a.login{font-size:9pt;
+          color:#ffffff; 
+          font-family:Verdana;
+          text-decoration:none;
+         }
+ a.login:hover{font-size:9pt;
+          color:#80b3ff; 
+          font-family:Verdana;
+          text-decoration:none;
+          cursor: pointer;
+         }
+ font.login{font-size:12pt;
+          color:#80b3ff; 
+          font-family:Verdana;
+         }
+ font.uname{
+          font-size:13pt;
+          color:#ffffff; 
+          font-family:Verdana;
+         }
+ font.error{
+          font-size:11pt; 
+          font-family:Verdana;
+}
+ font.norm{color:#000000;
+          font-size:9pt; 
+          font-family:Verdana;
+}
+hr.top{
+     height:6pt;
+     background-color:#333333;#333333
+     color:#333333;
+     width:100%;
+}
+hr.bot{
+     height:2pt;
+     background-color:#333333;#333333
+     color:#333333;
+     width:100%;
+}
+
+
+ a{font-size:9pt;
+          color:#2c5aa0; 
+          font-family:Verdana;
+          text-decoration:none;
+         }
+ a:hover{font-size:9pt;
+          color:#80b3ff; 
+          font-family:Verdana;
+          text-decoration:none;
+          cursor: pointer;
+         }
+
+
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="shortcut icon" href="http://st.xforum.x-union.org/favicon.ico" type="image/x-icon">
+
+<title>yapf :: xforum</title>
+
+</head>
+
+ <body>
+  <table cellpading="0" cellspacing="0" width="100%">
+   <tr class="top">
+    <td class="left">
+     &nbsp;&nbsp;&nbsp;<font class="top"><b><i>xForum</i></b></font>
+    </td>
+
+<td class="right">
+[% IF auth == 0 %]
+      <br>
+     <form action='/logout' method='post'>      
+          <font class="login">Welcome [</font>
+          <font class="uname">[% username %]</font>
+          <font class="login">]&nbsp;</font> 
+           <a href ="/profile" class="login">профиль</a>
+          <input type="hidden" name="type" value="forum">
+          <input  type='submit' class="exit" value='выход'>
+     </form>
+[% ELSE %]
+       <br>
+     <form action="/login" method='post'>
+         <font class="log_in"><b>login</b></font> 
+         <input type='text' name='login' class="auth">
+         &nbsp;<font class="log_in"><b>password</b></font> 
+         &nbsp;<input type='password' name='psw' class="auth"> 
+         <input type="hidden" name="type" value="forum">
+         <input type='submit' value=' войти ' class="exit">
+     </form>
+    [% END %]
+  [% IF error %]
+          <font class="error">неверный логин или пароль!!!</font>
+  [% END %]
+</td>
+</table>
+
+<hr class="top">
+<br>
+
+
+<div id="container" style="width:100%;">
+
+
+
+
+[% IF arr_adv %]
+ <div id="menu" style="float:left;clear:left;">&nbsp;&nbsp;
+ <img src='http://st.xforum.x-union.org/xf/objavleniya.png'>&nbsp;&nbsp;&nbsp;</div>
+
+ <div id="content" style="float:left;width:92%;">
+ <div style="background:#333333;color:#ffffff;font-face:Verdana;font-size:13pt;height:16pt;">&nbsp;&nbsp;&nbsp;ОбЪявления</div>
+ <div style="float:left;">
+
+[% SET I = 0 %]
+   [% FOREACH rows IN arr_adv %]
+        
+        &#187;<a href="/thread/[% rows.id %]/?page=1" class="adv">&nbsp;[% rows.name %]</a><font class="norm"> by [% arr_a.$I %]</font>
+       [% SET I = I + 1 %]
+    [% END %]
+   <br>
+   <br>
+ </div>
+ </div>
+[% END %]
+
+
+[% SET I = 0 %]
+[% SET L = 0 %]
+[% IF arr_cat %]
+ [% FOREACH rows_cat IN arr_cat %]
+      <div id="menu" style="float:left;clear:left;">&nbsp;&nbsp;
+    [% IF L == 0 %]
+        <img src='http://st.xforum.x-union.org/xf/General.png'>&nbsp;&nbsp;&nbsp;</div>
+    [% ELSIF L == 1 %]
+        <img src='http://st.xforum.x-union.org/xf/offtop.png'>&nbsp;&nbsp;&nbsp;</div>
+    [% ELSIF L == 2 %]
+        <img src='http://st.xforum.x-union.org/xf/objavleniya.png'>&nbsp;&nbsp;&nbsp;</div>
+      [% SET L = 0 %]
+    [% END %]      
+
+ <div id="content" style="float:left;width:92%;">
+ <div style="background:#333333;color:#ffffff;font-face:Verdana;font-size:13pt;height:16pt;">&nbsp;&nbsp;&nbsp;[% rows_cat.name %]</div>
+ <div style="float:left;">
+    &nbsp;&nbsp;<font class="norm">описание категории</font><br>&nbsp;&nbsp;<font class="norm">Модераторы: </font><br>
+         [% FOREACH rows IN arr_boar.$I %]
+            [% WHILE (row = rows.next) %]
+                <font class="norm">&#x25BC;</font><a class="boards" href="/board/[% row.id %]/?page=1">[% row.name %]</a>&nbsp;
+            [% END %]
+         [% END %]
+      [% SET I = I + 1 %]
+  <br><br>
+ </div>
+ <div style="float:right;"><font class="norm">Новое сообщение в теме:</font><br><font class="norm">Автор:</font></div>
+ </div>      
+
+      [% SET L = L + 1 %]
+ [% END %]
+[% END %]
+
+
+ <div id="content" style="float:left;width:100%;">
+ <div style="background:#2c5aa0;color:#ffffff;font-face:Verdana;font-size:13pt;height:16pt;text-align:center;">Информация</div>
+ <div style="float:left;"><br>
+   <font class="norm">&nbsp;&nbsp;Участники: [% sum_u %]</font><br>
+   <font class="norm">&nbsp;&nbsp;Последний зарегистрированный: [% lastuser %]</font><br>
+   <br>
+ <br></div>
+ <div style="float:right;">
+   <br><a href="http://www.catalystframework.org/"><img src='http://st.xforum.x-union.org/xf/cat.png' border=0>&nbsp;&nbsp;&nbsp;</a>
+ </div>
+ </div>
+
+ <div id="content" style="float:left;width:100%;">
+ <div><br><hr class="bot">
+ </div>
+ </div>
+
+
+ <div id="content" style="float:left;width:100%;">
+ <div style="background:#333333;color:#ffffff;font-face:Verdana;font-size:11pt;height:16pt;text-align:center;">
+ <b>YAPF::xForum (c) Developed by unStatiK</b>
+ </div>
+ </div>
+ </div>
+
+</div>
+
+ </body>
+</html>
