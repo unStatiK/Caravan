@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+
+<html>
+
+<head>
+
+
+<style type='text/css'>
+ body{margin:0;}
+ a.top{
+font-size:34pt;
+          color:#ffffff;
+          font-family:Verdana;
+          text-decoration:none;
+         }
+ a.top:hover{
+font-size:34pt;
+          color:#ffffff;
+          font-family:Verdana;
+              text-decoration:none;
+                   cursor:pointer;
+}
+ td.left{background-color:#2c5aa0;text-align:left;}
+ td.right{background-color:#2c5aa0;text-align:right;}
+ font.log_in{font-size:10pt;
+          color:#ffffff;
+          font-family:Verdana;
+         }
+ input.auth{background-color:#80b3ff; border: solid #000000 1px;width:100px;}
+ input.exit{background-color: #2c5aa0;
+          color:#ffffff;
+          font-family:Verdana;
+          border:0;
+           }
+ input.new{background-color: #ffffff;
+          color:#000000;
+          font-family:Verdana;
+          border:solid #000000 1px;
+           }
+ input.new:hover{color:#787878;
+                   cursor:pointer;
+           }
+ input.exit:hover{color:#80b3ff;
+                   cursor:pointer;
+           }
+ a.login{font-size:9pt;
+          color:#ffffff;
+          font-family:Verdana;
+          text-decoration:none;
+         }
+ a.login:hover{font-size:9pt;
+          color:#80b3ff;
+          font-family:Verdana;
+          text-decoration:none;
+          cursor: pointer;
+         }
+ font.login{font-size:12pt;
+          color:#80b3ff;
+          font-family:Verdana;
+         }
+ font.uname{
+          font-size:13pt;
+          color:#ffffff;
+          font-family:Verdana;
+         }
+ font.head{
+          font-size:9pt;
+          color:#ffffff;
+          font-family:Verdana;
+         }
+ font.error{
+          font-size:11pt;
+          font-family:Verdana;
+}
+ font.norm{color:#000000;
+          font-size:9pt;
+          font-family:Verdana;
+}
+hr.top{
+     height:6pt;
+     background-color:#333333;#333333
+     color:#333333;
+     width:100%;
+}
+hr.bot{
+     height:2pt;
+     background-color:#333333;#333333
+     color:#333333;
+     width:100%;
+}
+
+
+ a{font-size:9pt;
+          color:#2c5aa0;
+          font-family:Verdana;
+          text-decoration:none;
+         }
+ a:hover{font-size:9pt;
+          color:#80b3ff;
+          font-family:Verdana;
+          text-decoration:none;
+          cursor: pointer;
+         }
+
+
+
+</style>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="shortcut icon" href="http://st.xforum.x-union.org/favicon.ico" type="image/x-icon">
+
+<title>yapf :: caravan</title>
+
+</head>
+
+ <body>
+  <table cellpading="0" cellspacing="0" width="100%">
+   <tr class="top">
+    <td class="left">
+     &nbsp;&nbsp;&nbsp;<a href="/" class="top"><b><i>Caravan</i></b></a>
+    </td>
+
+<td class="right">
+<?pl if ($auth == 0){ ?>
+      <br>
+     <form action='/logout' method='post'>
+          <font class="login">Welcome [</font>
+          <font class="uname">[== $username =]</font>
+          <font class="login">]&nbsp;</font>
+           <a href ="/profile" class="login">профиль</a>
+          <input type="hidden" name="type" value="board">
+          <input type="hidden" name="idb" value="[== $idb =]">
+          <input type="hidden" name="page" value="[== $page =]">
+          <input  type='submit' class="exit" value='выход'>
+     </form>
+<?pl }else{ ?>
+       <br>
+     <form action="/login" method='post'>
+         <font class="log_in"><b>login</b></font>
+         <input type='text' name='login' class="auth">
+         &nbsp;<font class="log_in"><b>password</b></font>
+         &nbsp;<input type='password' name='psw' class="auth">
+          <input type="hidden" name="type" value="board">
+          <input type="hidden" name="idb" value="[== $idb =]">
+          <input type="hidden" name="page" value="[== $page =]">
+         <input type='submit' value=' войти ' class="exit">
+     </form>
+
+<?pl } ?>
+  <?pl if ($error){ ?>
+          <font class="error">неверный логин или пароль!!!</font>
+  <?pl } ?>
+</td>
+</table>
+
+<hr class="top">
+<br>
+
+
+
+
+<div id="container" style="width:100%;">
+
+
+<?pl if (@$arr_adv){ ?>
+ <div id="menu" style="float:left;clear:left;">&nbsp;&nbsp;
+ <img src='http://st.xforum.x-union.org/xf/objavleniya.png'>&nbsp;&nbsp;&nbsp;</div>
+
+ <div id="content" style="float:left;width:92%;">
+ <div style="background:#333333;color:#ffffff;font-face:Verdana;font-size:13pt;height:16pt;">&nbsp;&nbsp;&nbsp;ОбЪявления</div>
+ <div style="float:left;">
+
+<?pl my $i = 0; ?>
+    <?pl for $rows (@$arr_adv){ ?>
+
+        &#187;<a href="/thread/[== $rows->[$i]->id =]/?page=1" class="adv">&nbsp;[== $rows->[$i]->name =]</a><font class="norm"> by [== $arr_a->[$i] =]</font>
+       <?pl $i = $i + 1; ?>
+
+    <?pl } ?>
+ 
+   <br>
+   <br>
+ </div>
+ </div>
+<?pl } ?>
+
+
+ <div id="menu" style="float:left;clear:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+ <div id="content" style="float:left;width:92%;">
+ <div style="background:#333333;color:#ffffff;font-face:Verdana;font-size:13pt;height:16pt;">&nbsp;&nbsp;&nbsp;&#187;&nbsp;[== $nameb =]</div>
+ <div style="float:left;">
+    <br>
+
+<?pl if ($auth == 0){ ?>
+
+<form action='/board/newthread' method='post'>
+            <input type="hidden" name="idb" value="[== $idb =]">
+               <input type="submit" class="new"  value='новая тема'>
+</form>
+<p>
+<?pl } ?>
+
+ </div>
+ <div style="float:right;">
+<br>
+<?pl my $n = 0; ?>
+      <font color='black'>
+        <?pl while ($n < $pages){ ?> 
+           <?pl if ($page == $n + 1){ ?>
+              [<a href="/board/[== $idb =]/?page=[== $n + 1 =]" class="page">[== $n + 1 =]</a>]
+           <?pl }else{ ?>
+              <a href="/board/[== $idb =]/?page=[== $n + 1 =]" class="page">[== $n + 1 =]</a>
+           <?pl } ?>
+           <?pl $n = $n + 1; ?>
+        <?pl } ?>
+      </font>
+<p>
+</div>
+ </div>
+
+
+
+
+ <div id="menu" style="float:left;clear:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+ <div id="content" style="float:left;width:92%;">
+ <div style="float:left;width:100%">
+
+
+<?pl if (@$arr_them_a){ ?>
+
+<?pl my $i = 0; ?>
+
+      <font class="norm">Важные темы</font><br>
+
+       <table width="100%" cellpadding=0 cellspacing=0>
+        <tr style="background-color: #000000;">
+        <td ><font class="head">название</font></a></td>
+        <td class="left_s"><font class="head">ответов</font></a></td>
+        <td class="center" align='center'><font class="head">автор</font></td>
+        <td class="center" align='center'><font class="head">время</font></td>
+        <td class="center_s"></td>
+        </tr>
+
+   <?pl my $k = 0; ?>
+   <?pl for $rows (@$arr_them_a){ ?>
+      
+        <tr class='content'>
+         <?pl if ($k == 0){ ?>
+           <td style="border-top:solid #C0C0C0 1px;border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;width:100%;">
+         <?pl }else{ ?>
+           <td style="border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;width:100%;">
+         <?pl } ?>
+         <?pl if ($rows->[$i]->status == 1){ ?>
+            <img src='http://st.xforum.x-union.org/mail_get.png' style="vertical-align:middle;">
+         <?pl }else{ ?>
+            <img src='http://st.xforum.x-union.org/gpg.png' style="vertical-align:middle;">
+         <?pl } ?>
+        <a href='/thread/[== $rows->[$i]->id =]/?page=1' class="theme">[== $rows->[$i]->name =]</a></td>
+        <td style="background-color: #C0C0C0;"><font class="norm">[== $arr_answ_a[$i] =]</font></td>
+         <?pl if ($k == 0){ ?>
+           <td style="border-top:solid #C0C0C0 1px;border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;"> <font class="norm">&nbsp;[== $arr_authr_a[$i] =]&nbsp;</font></td>
+           <?pl $k = 1; ?>
+         <?pl }else{ ?>
+           <td style="border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;"> <font class="norm">&nbsp;[== $arr_authr_a[$i] =]&nbsp;</font></td>
+         <?pl } ?>
+        <td style="background-color: #C0C0C0;" nowrap><font class="norm">[== $rows->[$i]->date =]</font></td>
+        </tr>
+       <?pl $i = $i + 1; ?>
+    <?pl } ?>
+       </table>
+  <p>
+  <?pl } ?>
+
+<?pl if (@$arr_them){ ?>
+<?pl my $i = 0; ?>
+
+
+       <table width="100%" cellpadding=0 cellspacing=0>
+
+        <tr style="background-color: #000000;">
+        <td ><font class="head">название</font></a></td>
+        <td class="left_s"><font class="head">ответов</font></a></td>
+        <td class="center" align='center'><font class="head">автор</font></td>
+        <td class="center" align='center'><font class="head">время</font></td>
+        <td class="center_s"></td>
+        </tr>
+
+   <?pl my $k = 0; ?>
+   <?pl for $rows (@$arr_them){ ?>
+      
+        <tr class='content'>
+         <?pl if ($k == 0){ ?>
+           <td style="border-top:solid #C0C0C0 1px;border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;width:100%;">
+         <?pl }else{ ?>
+           <td style="border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;width:100%;">
+         <?pl } ?>
+         <?pl if ($rows->[0]->status == 1){ ?>
+            <img src='http://st.xforum.x-union.org/mail_get.png' style="vertical-align:middle;">
+         <?pl }else{ ?>
+            <img src='http://st.xforum.x-union.org/gpg.png' style="vertical-align:middle;">
+         <?pl } ?>
+        <a href='/thread/[== $rows->[0]->id =]/?page=1' class="theme">[== $rows->[0]->name =]</a></td>
+        <td style="background-color: #C0C0C0;"><font class="norm">[== $arr_answ->[1] =]</font></td>
+         <?pl if ($k == 0){ ?>
+           <td style="border-top:solid #C0C0C0 1px;border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;"> <font class="norm">&nbsp;[== $arr_authr->[0] =]&nbsp;</font></td>
+           <?pl $k = 1; ?>
+         <?pl }else{ ?>
+           <td style="border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;"> <font class="norm">&nbsp;[== $arr_authr->[0] =]&nbsp;</font></td>
+         <?pl } ?>
+        <td style="background-color: #C0C0C0;" nowrap><font class="norm">[== $rows->[0]->date =]</font></td>
+        </tr>
+       <?pl $i = $i + 1; ?>
+    <?pl } ?>
+<?pl } ?>
+       </table>
+
+
+
+   <br>
+   <br>
+ </div>
+ </div>
+
+
+ <div id="menu" style="float:left;clear:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+ <div id="content" style="float:left;width:92%;">
+ <div style="float:left;">
+ </div>
+ <div style="float:right;">
+<?pl $n = 0; ?>
+      <font color='black'>
+        <?pl while ($n < $pages){ ?>
+           <?pl if ($page == $n + 1){ ?>
+              [<a href="/board/[== $idb =]/?page=[== $n + 1 =]" class="page">[== $n + 1 =]</a>]
+           <?pl }else{ ?>
+              <a href="/board/[== $idb =]/?page=[== $n + 1 =]" class="page">[== $n + 1 =]</a>
+           <?pl } ?>
+           <?pl $n = $n + 1; ?>
+        <?pl } ?>
+      </font>
+<p>
+</div>
+ </div>
+
+
+
+
+ <div id="content" style="float:left;width:100%;">
+ <div style="background:#2c5aa0;color:#ffffff;font-face:Verdana;font-size:13pt;height:16pt;text-align:center;">Информация</div>
+ <div style="float:left;"><br>
+   <font class="norm">&nbsp;&nbsp;Участники: [== $sum_u =]</font><br>
+   <font class="norm">&nbsp;&nbsp;Последний зарегистрированный: [== $lastuser =]</font><br>
+   <br>
+ <br></div>
+ <div style="float:right;">
+   <br><a href="http://www.perldancer.org/"><img src='/images/perldancer.jpg' border=0>&nbsp;&nbsp;&nbsp;</a>
+ </div>
+ </div>
+
+ <div id="content" style="float:left;width:100%;">
+ <div><br><hr class="bot">
+ </div>
+ </div>
+
+
+ <div id="content" style="float:left;width:100%;">
+ <div style="background:#333333;color:#ffffff;font-face:Verdana;font-size:11pt;height:16pt;text-align:center;">
+ <b>YAPF::xForum (c) Developed by unStatiK</b>
+ </div>
+ </div>
+ </div>
+
+
+
+
+</div>
+
+ </body>
+</html>

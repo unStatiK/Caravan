@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+
+<html>
+
+<head>
+<link rel="shortcut icon" href="http://st.xforum.x-union.org/favicon.ico" type="image/x-icon">
+<link type="text/css" rel="stylesheet" href="http://st.xforum.x-union.org/forum.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>forum</title>
+
+</head>
+
+ <body bgcolor="black">
+ <br>
+  <table cellpading="0" cellspacing="0">
+   <tr>
+    <td align='left'>
+     <a href='/forum' class='nav'>xForum</a>
+    </td>
+       <td>
+     <font style='font-size:24px;' color='white'>&rarr;</font>
+    </td>
+    <td>
+     <font color='white' size='+1'>&nbsp;[== $user =] Личный профиль</font>
+    </td>
+   </tr>
+ </table>
+<br><br>
+   <a href="javascript:history.back();"><font color='white'>вернуться назад</font></a>
+   <table cellpadding='0' cellspacing='0' align='center' width='40%'>
+
+   <tr>
+        <td style='height:29px;'><img src='http://st.xforum.x-union.org/tbl_h_l.gif'></td>
+        <td style='background-image:url(http://st.xforum.x-union.org/tbl_h_c.gif);height:29px;width:100%;'></td>
+        <td><img src='http://st.xforum.x-union.org/tbl_h_r.gif'></td>
+  </tr>
+
+   <tr>
+        <td></td>
+        <td align='right'>
+          <h2><font color='white'>изменить пароль аккаунта</font></h2><br>
+        </td>
+        <td></td>
+  </tr>
+ <?pl if ($derror_){ ?>
+   <tr>
+        <td></td>
+        <td><br>
+          <font style='size:14px;' color='red'>[== $derror_ =]</font>
+        </td>
+        <td></td>
+  </tr>
+ <?pl } ?>
+ <?pl if ($succ){ ?>
+   <tr>
+        <td></td>
+        <td><br>
+          <font style='size:14px;' color='orange'>[== $succ =]</font>
+        </td>
+        <td></td>
+  </tr>
+ <?pl } ?>
+  <form action='/profile/save' method='post'>
+   <tr>
+        <td></td>
+        <td><br>
+          <font color='white'>текущий пароль</font>
+        </td>
+        <td></td>
+  </tr>
+
+   <tr>
+        <td></td>
+        <td>
+          <input type='password' name='actpsw' style='color:white;border:1px solid 
+white;background-color:black;font-size:18px;'>
+        </td>
+        <td></td>
+  </tr>
+   <tr>
+        <td></td>
+        <td><br><br>
+          <font color='white'>новый пароль</font>
+        </td>
+        <td></td>
+  </tr>
+
+   <tr>
+        <td></td>
+        <td>
+          <input type='password' name='newpsw' style='color:white;border:1px solid 
+white;background-color:black;font-size:18px;'>
+        </td>
+        <td></td>
+  </tr>
+   <tr>
+        <td></td>
+        <td><br><br>
+          <font color='white'>повторить новый пароль</font>
+        </td>
+        <td></td>
+  </tr>
+
+   <tr>
+        <td></td>
+        <td>
+          <input type='password' name='renewpsw' style='color:white;border:1px solid 
+white;background-color:black;font-size:18px;'>
+        </td>
+        <td></td>
+  </tr>
+
+
+   <tr>
+        <td></td>
+        <td><br>
+          <input type='submit' style='color:black;border:1px solid white;background-color:white;font-size:18px;' 
+value='сохранить'>
+        </td>
+        <td></td>
+  </tr>
+ </form>
+
+   <tr>
+        <td></td>
+        <td align='right'><br><br>
+          <h2><font color='white'>аватар</font></h2><br>
+        </td>
+        <td></td>
+  </tr>
+
+   <tr>
+        <td></td>
+        <td>
+          <font color='white'>текущий аватар</font>
+        </td>
+        <td></td>
+  </tr>
+
+   <tr>
+        <td></td>
+        <td align='center'><br>
+          <?pl if ($nullava){ ?><font color='grey' style="font-size:14px;">[== $nullava =]</font>
+          <?pl }else{ ?>
+          <img src='/[== $ava =]'>
+          <?pl } ?>
+        </td>
+        <td></td>
+  </tr>
+ <?pl if ($error_){ ?>
+   <tr>
+        <td></td>
+        <td><br>
+          <font style='size:14px;' color='red'>[== $error_ =]</font>
+        </td>
+        <td></td>
+  </tr>
+ <?pl } ?>
+   <tr>
+        <td></td>
+        <td><br>
+          <font color='white'>загрузить новый</font>
+        </td>
+        <td></td>
+  </tr>
+
+ <form action='/profile/save' method="post" enctype="multipart/form-data">
+   <tr>
+        <td></td>
+        <td><br>
+          <input type='file' style='color:black;border:1px solid white;background-color:white;font-size:18px;' name='file_'>
+        </td>
+        <td></td>
+  </tr>
+   <tr>
+        <td></td>
+        <td><br>
+          <input type='submit' style='color:black;border:1px solid white;background-color:white;font-size:18px;' value='загрузить'>
+        </td>
+        <td></td>
+  </tr>
+ </form>
+
+   <tr>
+        <td style='height:29px;'><img src='http://st.xforum.x-union.org/tbl_rh_l.png'></td>
+        <td style='background-image: url(http://st.xforum.x-union.org/tbl_rh_c.png);height:29px;width:100%;'></td>
+        <td><img src='http://st.xforum.x-union.org/tbl_rh_r.png'></td>
+  </tr>
+  </table>
+<br><br>
+
+<table cellpadding="0" cellspacing="0" align='center' width="100%">
+   <tr>
+    <td colspan="2">
+      <hr color='white'>
+    </td>
+   </tr>
+  <tr>
+   <td align='right' width="100%"><br><font style="size:12px;" color='white'><i>xForum (c)</i></font><br>
+<font color='white'><b>Developed by unStatiK</b>&nbsp;&nbsp;</font></td>
+  </tr>
+ </table>
+ </body>
+</html>

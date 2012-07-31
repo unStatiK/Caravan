@@ -1,0 +1,18 @@
+appname: "caravan"
+charset: "UTF-8"
+template: "Tenjin"
+
+engines:
+   Tenjin:
+     encoding:  'utf8'
+session: Simple
+
+plugins:
+      DBIC:
+        default:
+          dsn:  dbi:mysql:forum
+          schema_class: DB
+          user: <username>
+          pass: <password>
+          options:
+            PrintError: 1
