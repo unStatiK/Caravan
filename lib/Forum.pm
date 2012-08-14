@@ -11,7 +11,7 @@ get '/' => sub {
     my $username;
     my $error;
     
-     if(defined session->{id} && defined session->{user}){
+     if(defined session->{idu} && defined session->{user}){
         $auth = 0;
         $username = session->{user};
      }else{
@@ -135,7 +135,7 @@ get '/board/:id/' => sub {
           }
         }
 
-if(defined session->{id} && defined session->{user}){
+if(defined session->{idu} && defined session->{user}){
         $auth = 0;
         $username = session->{user};
      }else{
@@ -191,10 +191,10 @@ post '/board/newthread' => sub  {
         my $idb;
         my $userid;
 
-if(defined session->{id} && defined session->{user}){
+if(defined session->{idu} && defined session->{user}){
         $auth = 0;
         $username = session->{user};
-        $userid = session->{id};
+        $userid = session->{idu};
         $nameb = DBFunction::getboardname(params->{idb});
         $idb = params->{idb};
         template 'newthread' => 
@@ -258,10 +258,10 @@ my $nameb;
                  my $is_close =  DBFunction::checkclosetheme(params->{id});     
 
 
-if(defined session->{id} && defined session->{user}){
+if(defined session->{idu} && defined session->{user}){
         $auth = 0;
         $username = session->{user};
-        $userid = session->{id};
+        $userid = session->{idu};
      }else{
         $auth = 1;
         $username = '';
@@ -383,11 +383,11 @@ post '/thread/add' => sub {
 
 get '/profile/' => sub {
 
-    if(defined session->{id} && defined session->{user}){
+    if(defined session->{idu} && defined session->{user}){
 
         my $auth = 0;
         my $user = session->{user};
-        my $ava = DBFunction::getava(session->{id});
+        my $ava = DBFunction::getava(session->{idu});
         my $psw_status;
         my $nullava;
         my $error_;
@@ -452,7 +452,7 @@ get '/profile/' => sub {
 post '/profile/save' => sub {
     my $r;
     my $avapath = "/tmp/xForum/public/";
-    if(defined session->{id} && defined session->{user}){
+    if(defined session->{idu} && defined session->{user}){
       my $error;
          if(defined request->upload('file_')){
              my $f_rsz;
@@ -514,8 +514,8 @@ post '/profile/save' => sub {
                                 }
                             }
                              if(!defined $error){
-                                 unlink($avapath.DBFunction::getava(session->{id}));
-                                 DBFunction::updateava(session->{id},$fname);
+                                 unlink($avapath.DBFunction::getava(session->{idu}));
+                                 DBFunction::updateava(session->{idu},$fname);
                                  unlink($upload->tempname);
                             }
                            }
@@ -533,9 +533,9 @@ post '/profile/save' => sub {
       if(defined params->{actpsw} && defined params->{newpsw} && defined params->{renewpsw}){
         my @post = Validata::valid_psw(params->{actpsw},params->{newpsw},params->{renewpsw});
             if(defined $post[0] && defined $post[1] && defined $post[2]){
-               if(DBFunction::checkpsw(session->{id},$post[0]) eq 0){
+               if(DBFunction::checkpsw(session->{idu},$post[0]) eq 0){
                  if($post[1] eq $post[2]){
-                   DBFunction::updatepsw(session->{id},$post[1]);
+                   DBFunction::updatepsw(session->{idu},$post[1]);
                    $r = 1;
                    redirect '/profile/?action=succ';
                  }else{
@@ -611,7 +611,7 @@ post '/login' => sub {
                if(defined $post[1]){
                  my @var = DBFunction::checklogin($post[0],$post[1]);
                    if($var[0] == 0){
-                     session id => $var[1];
+                     session idu => $var[1];
                      session user => $post[0];
                      undef $err;
                    }
