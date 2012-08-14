@@ -304,12 +304,12 @@ hr.bot{
             <img src='http://st.xforum.x-union.org/gpg.png' style="vertical-align:middle;">
          <?pl } ?>
         <a href='/thread/[== $rows->[0]->id =]/?page=1' class="theme">[== $rows->[0]->name =]</a></td>
-        <td style="background-color: #C0C0C0;"><font class="norm">[== $arr_answ->[1] =]</font></td>
+        <td style="background-color: #C0C0C0;"><font class="norm">[== $arr_answ->[$i] =]</font></td>
          <?pl if ($k == 0){ ?>
-           <td style="border-top:solid #C0C0C0 1px;border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;"> <font class="norm">&nbsp;[== $arr_authr->[0] =]&nbsp;</font></td>
+           <td style="border-top:solid #C0C0C0 1px;border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;"> <font class="norm">&nbsp;[== $arr_authr->[$i] =]&nbsp;</font></td>
            <?pl $k = 1; ?>
          <?pl }else{ ?>
-           <td style="border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;"> <font class="norm">&nbsp;[== $arr_authr->[0] =]&nbsp;</font></td>
+           <td style="border-left:solid #C0C0C0 1px;border-right:solid #C0C0C0 1px;border-bottom:solid #C0C0C0 1px;"> <font class="norm">&nbsp;[== $arr_authr->[$i] =]&nbsp;</font></td>
          <?pl } ?>
         <td style="background-color: #C0C0C0;" nowrap><font class="norm">[== $rows->[0]->date =]</font></td>
         </tr>
@@ -370,7 +370,7 @@ hr.bot{
 
  <div id="content" style="float:left;width:100%;">
  <div style="background:#333333;color:#ffffff;font-face:Verdana;font-size:11pt;height:16pt;text-align:center;">
- <b>YAPF::xForum (c) Developed by unStatiK</b>
+ <b>YAPF::Caravan (c) Developed by unStatiK</b>
  </div>
  </div>
  </div>

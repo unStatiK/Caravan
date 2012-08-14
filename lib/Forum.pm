@@ -340,6 +340,9 @@ post '/thread/add' => sub {
       my $temp = params->{namet};
       $temp =~ s/^\s+//;
       $temp =~ s/\s+$//;
+      $temp =~ s/</&lt;/g;
+      $temp =~ s/>/&gt;/g;
+      my $str = $temp;
      if($temp ne ''){
        $temp = params->{mytxtarea};
        $temp =~ s/^\s+//;
@@ -362,7 +365,7 @@ post '/thread/add' => sub {
     #$bbc->{html} =~ s/([[:print:]]{70}+)/$1&shy;/g;
    # $reqq =~ s/([[:print:]]{70}+)/$1&shy;/g;
     my $html = $bbc->parse($reqq);
-    my $idt = DBFunction::addthread(params->{idb},params->{ida},params->{namet},$bbc->{html});
+    my $idt = DBFunction::addthread(params->{idb},params->{ida},$str,$bbc->{html});
 
 
 

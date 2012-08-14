@@ -16,7 +16,7 @@
   <table cellpading="0" cellspacing="0">
    <tr>
     <td align='left'>
-     <a href='/forum' class='nav'>xForum</a>
+     <a href='/forum' class='nav'>Caravan</a>
     </td>
        <td>
      <font style='font-size:24px;' color='white'>&rarr;</font>
@@ -197,7 +197,7 @@ value='сохранить'>
     </td>
    </tr>
   <tr>
-   <td align='right' width="100%"><br><font style="size:12px;" color='white'><i>xForum (c)</i></font><br>
+   <td align='right' width="100%"><br><font style="size:12px;" color='white'><i>Caravan (c)</i></font><br>
 <font color='white'><b>Developed by unStatiK</b>&nbsp;&nbsp;</font></td>
   </tr>
  </table>
