@@ -2,7 +2,7 @@
 <img src="https://raw.githubusercontent.com/unStatiK/Caravan/master/public/caravan.jpg" alt="Caravan Logo" width="200" height="155"></img>
 </div>
 
-Yep! Is's alive. I done roadmap for beta release.
+Yep! It's alive. I done roadmap for beta release.
 I **NOT** planned engine for **highload**
 
 <a name="Roadmap"/>
