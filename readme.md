@@ -10,7 +10,10 @@ I **NOT** planned engine for **highload**
 
 - Written in Dancer framework 1.x
 - Full use DBIx ORM
+- Xslate template engine ([**Text::Xslate**](http://search.cpan.org/~syohex/Text-Xslate-3.3.3/))
 - Code and quote highlight
+- RSS
+- JSON Api
 - Public engine module on CPAN   ([**Dancer::Caravan**](http://search.cpan.org/~unstatik/))
 - Coverage by PerlCritic
 - Support work on 5.10+ 
