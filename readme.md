@@ -11,7 +11,7 @@ I **NOT** planned engine for **highload**
 - Written in Dancer framework 1.x
 - Full use DBIx ORM
 - Xslate template engine ([**Text::Xslate**](http://search.cpan.org/~syohex/Text-Xslate-3.3.3/))
-- Code and quote highlight ([**SyntaxHighlighter**]http://alexgorbatchev.com/SyntaxHighlighter/)
+- Code and quote highlight ([**SyntaxHighlighter**](http://alexgorbatchev.com/SyntaxHighlighter/))
 - RSS
 - JSON Api
 - Public engine module on CPAN   ([**Dancer::Caravan**](http://search.cpan.org/~unstatik/))
