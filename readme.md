@@ -18,3 +18,4 @@ I **NOT** planned engine for **highload**
 - Coverage by PerlCritic
 - Support work on 5.10+ 
 - Openshift cartridge
+- Docker image
