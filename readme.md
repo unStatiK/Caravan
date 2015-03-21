@@ -8,7 +8,7 @@ I **NOT** planned engine for **highload**
 <a name="Roadmap"/>
 ## Roadmap
 
-- Written in Dancer framework 1.x
+- Written in Dancer2 framework
 - Full use DBIx ORM
 - Xslate template engine ([**Text::Xslate**](http://search.cpan.org/~syohex/Text-Xslate-3.3.3/))
 - Code and quote highlight ([**SyntaxHighlighter**](http://alexgorbatchev.com/SyntaxHighlighter/))
